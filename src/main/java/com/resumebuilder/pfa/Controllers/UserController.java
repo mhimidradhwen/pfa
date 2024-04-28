@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired 
+    @Autowired
     private UserEducationService userEducationService;
 
     // Register New User
@@ -73,6 +73,16 @@ public class UserController {
         try {
             return new ResponseEntity<List<Education>>(userEducationService.getEducations(id), HttpStatus.OK);
 
+        } catch (Exception e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Update Education By User ID
+    @PutMapping("/user/{id}/educations")
+    public ResponseEntity<?> updateEducationByUserID(@PathVariable Long id, @RequestBody Education education) {
+        try {
+            return new ResponseEntity<User>(userEducationService.updateEducationByUserID(id, education), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
         }

@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.mongodb.lang.NonNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,12 +25,16 @@ public class User {
     @Id
     private Long ID;
 
-    @NonNull
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private Date createdAt;
+    private Address address;
     private List<Education> educations = new ArrayList<Education>();
-    
+    private List<Experience> experiences = new ArrayList<Experience>();
+    private List<Skills> softSkills = new ArrayList<Skills>();
+    private List<Skills> hardSkills = new ArrayList<Skills>();
+    private List<Language> languages = new ArrayList<Language>();
+    private List<Interests> interests = new ArrayList<Interests>();
+    private Date createdAt;
 }

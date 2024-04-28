@@ -33,7 +33,7 @@ public class UserEducationService {
         return userRepository.save(existedUser.get());
     }
 
-    // Get Education
+    // Get Education By User ID
     public List<Education> getEducations(Long id) throws Exception {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
@@ -46,4 +46,16 @@ public class UserEducationService {
         throw new Exception("User Not Found");
     }
 
+    // Update Education By User ID
+    public User updateEducationByUserID(Long UID, Education education) throws Exception {
+        Optional<User> user = userRepository.findById(UID);
+        if (user.isPresent()) {
+            educationService.updateEducation(education);
+            user.get().setEducations(getEducations(UID));
+            return userRepository.save(user.get());
+        }
+        throw new Exception("User Not Found");
+    }
+
+    
 }
