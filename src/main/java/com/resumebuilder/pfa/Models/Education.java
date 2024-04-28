@@ -25,6 +25,5 @@ public class Education {
     private String university;
     private Date startDate;
     private Date endDate;
-    private Long userID;
-
+    private Long UID;
 }

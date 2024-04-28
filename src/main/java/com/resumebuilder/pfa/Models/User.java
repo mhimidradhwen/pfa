@@ -1,5 +1,6 @@
 package com.resumebuilder.pfa.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +32,6 @@ public class User {
     private String email;
     private String password;
     private Date createdAt;
-    private List<Education> educations;
+    private List<Education> educations = new ArrayList<Education>();
     
 }

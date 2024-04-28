@@ -8,7 +8,6 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.resumebuilder.pfa.Models.Education;
 import com.resumebuilder.pfa.Models.User;
 import com.resumebuilder.pfa.Repositories.UserRepository;
 
@@ -17,11 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(User user) throws Exception{
-        Optional<User> existedUser = userRepository.findById(user.getID());
-        if (existedUser.isPresent()) {
-            throw new Exception("User Already Exist");
-        }
+    public User createUser(User user) {
         user.setID(new Random().nextLong());
         user.setCreatedAt(new Date(System.currentTimeMillis()));
         return userRepository.save(user);
@@ -35,13 +30,6 @@ public class UserService {
         return users;
     }
 
-    public Boolean userExists(Long ID) {
-        Optional<User> user = userRepository.findById(ID);
-        if (!user.isPresent()) {
-            return false;
-        }
-        return true;
-    }
 
     public User getUserById(Long ID) throws Exception {
         Optional<User> user = userRepository.findById(ID);
@@ -71,15 +59,5 @@ public class UserService {
         return userRepository.save(existedUser.get());
     }
 
-//
-    public User addEducation(User user,Education education) throws Exception{
-        Optional<User> existedUser = userRepository.findById(user.getID());
-        if (!existedUser.isPresent()) {
-            throw new Exception("User Not Exist");
-        }
-        user.getEducations().add(education);
-        return userRepository.save(user);
-    }
-
-
+  
 }
